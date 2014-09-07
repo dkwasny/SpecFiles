@@ -38,5 +38,9 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/local/*
 
+%pre
+getent passwd hadoop > /dev/null || \
+	useradd -r -s /sbin/nologin -c "Service account for Hadoop" hadoop
+
 %changelog
 
