@@ -1,21 +1,21 @@
 Name:		hadoop
-Version:	2.5.0
+Version:	2.5.1
 Release:	1%{?dist}
 Summary:	Distributed storage and processing framework
 
 Group:		Applications/Databases
 License:	Apache 2.0
 URL:		hadoop.apache.org
-Source0:	hadoop-2.5.0.tar.gz
+Source0:	hadoop-2.5.1.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 Requires:	java-1.7.0-openjdk
 
-ExclusiveArch:	i386
+ExclusiveArch:	x86_64
 Exclusiveos:	linux
 
 %description
-Hadoop compiled for 32-bit Linux.
+RPM installer for precompiled hadoop binaries.
 
 %prep
 %setup -q
@@ -39,8 +39,10 @@ rm -rf %{buildroot}
 /usr/local/*
 
 %pre
-getent passwd hadoop > /dev/null || \
-	useradd -c "Service account for Hadoop" hadoop
+getent passwd hdfs > /dev/null || \
+	useradd -r -s /sbin/nologin -c "Service account for Hadoop" hdfs
+getent passwd yarn > /dev/null || \
+	useradd -r -s /sbin/nologin -c "Service account for YARN" yarn
 
 %changelog
 
