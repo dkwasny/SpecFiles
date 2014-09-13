@@ -1,0 +1,12 @@
+[Unit]
+Description=Hadoop HDFS Namenode Daemon
+Documentation=http://hadoop.apache.org/
+
+[Service]
+Type=simple
+ExecStart=-/usr/local/bin/hdfs namenode
+Environment=JAVA_HOME=/etc/alternatives/jre
+User=hdfs
+
+[Install]
+WantedBy=multi-user.target
