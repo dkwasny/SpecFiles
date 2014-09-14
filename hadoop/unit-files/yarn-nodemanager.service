@@ -1,0 +1,12 @@
+[Unit]
+Description=YARN Nodemanager Daemon
+Documentation=http://hadoop.apache.org/
+
+[Service]
+Type=simple
+ExecStart=-/usr/local/bin/yarn nodemanager
+Environment=JAVA_HOME=/etc/alternatives/jre
+User=yarn
+
+[Install]
+WantedBy=multi-user.target

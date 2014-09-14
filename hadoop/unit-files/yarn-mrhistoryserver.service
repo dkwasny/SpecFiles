@@ -1,0 +1,12 @@
+[Unit]
+Description=YARN MapReduce History Server
+Documentation=http://hadoop.apache.org/
+
+[Service]
+Type=simple
+ExecStart=-/usr/local/bin/mapred historyserver
+Environment=JAVA_HOME=/etc/alternatives/jre
+User=yarn
+
+[Install]
+WantedBy=multi-user.target
