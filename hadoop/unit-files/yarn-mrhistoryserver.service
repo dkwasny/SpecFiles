@@ -1,12 +1,24 @@
 [Unit]
 Description=YARN MapReduce History Server
 Documentation=http://hadoop.apache.org/
+After=network-online.target
+Requires=network-online.target
 
 [Service]
 Type=simple
 ExecStart=-/usr/local/bin/mapred historyserver
 Environment=JAVA_HOME=/etc/alternatives/jre
 User=yarn
+
+# The MR History Server will exit if HDFS is not readily available.
+# This will have systemd repeatedly try bringing up the history
+# server when it prematurely exits.
+# The other HDFS and YARN daemons appear to have internal restarting
+# mechanisms and do not need a silly hack like this.
+# Using unit dependencies is not a good option due to HDFS being "up"
+# usually requiring multiple independent systems to be functional. 
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

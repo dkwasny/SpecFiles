@@ -1,6 +1,8 @@
 [Unit]
 Description=Hadoop HDFS Datanode Daemon
 Documentation=http://hadoop.apache.org/
+After=network-online.target
+Requires=network-online.target
 
 [Service]
 Type=simple
