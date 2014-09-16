@@ -1,0 +1,13 @@
+[Unit]
+Description=Zookeeper Daemon
+Documentation=http://zookeeper.apache.org/
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+ExecStart=-/usr/local/bin/zkServer.sh start-foreground
+User=zookeeper
+
+[Install]
+WantedBy=multi-user.target
