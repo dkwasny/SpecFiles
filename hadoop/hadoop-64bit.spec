@@ -17,7 +17,7 @@ ExclusiveArch:	x86_64
 Exclusiveos:	linux
 
 %description
-RPM installer for precompiled hadoop binaries.
+RPM installer for precompiled Hadoop binaries.
 
 %prep
 %setup -q
@@ -51,12 +51,13 @@ rm -rf %{buildroot}
 
 %pre
 getent passwd hdfs > /dev/null || \
-	useradd -r -s /sbin/nologin -c "Service account for Hadoop" hdfs
+	useradd -r -s /sbin/nologin -c "Service account for HDFS" hdfs
 getent passwd yarn > /dev/null || \
 	useradd -r -s /sbin/nologin -c "Service account for YARN" yarn
 
 %post
 %systemd_post hdfs-namenode.service
+%systemd_post hdfs-secondarynamenode.service
 %systemd_post hdfs-datanode.service
 %systemd_post yarn-resourcemanager.service
 %systemd_post yarn-nodemanager.service
@@ -64,6 +65,7 @@ getent passwd yarn > /dev/null || \
 
 %preun
 %systemd_preun hdfs-namenode.service
+%systemd_preun hdfs-secondarynamenode.service
 %systemd_preun hdfs-datanode.service
 %systemd_preun yarn-resourcemanager.service
 %systemd_preun yarn-nodemanager.service
@@ -71,6 +73,7 @@ getent passwd yarn > /dev/null || \
 
 %postun
 %systemd_postun_with_restart hdfs-namenode.service
+%systemd_postun_with_restart hdfs-secondarynamenode.service
 %systemd_postun_with_restart hdfs-datanode.service
 %systemd_postun_with_restart yarn-resourcemanager.service
 %systemd_postun_with_restart yarn-nodemanager.service

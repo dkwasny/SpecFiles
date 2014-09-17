@@ -7,7 +7,6 @@ Requires=network-online.target
 [Service]
 Type=simple
 ExecStart=-/usr/local/bin/yarn resourcemanager
-Environment=JAVA_HOME=/etc/alternatives/jre
 User=yarn
 
 [Install]
