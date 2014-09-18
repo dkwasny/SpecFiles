@@ -1,0 +1,13 @@
+[Unit]
+Description=HBase Region Server Daemon
+Documentation=http://hbase.apache.org//
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+ExecStart=-/usr/local/bin/hbase regionserver
+User=hbase
+
+[Install]
+WantedBy=multi-user.target
