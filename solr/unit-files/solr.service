@@ -1,0 +1,13 @@
+[Unit]
+Description=Solr Daemon
+Documentation=http://lucene.apache.org/solr/
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+ExecStart=-/usr/local/bin/solr start -f
+User=solr
+
+[Install]
+WantedBy=multi-user.target
