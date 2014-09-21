@@ -44,7 +44,7 @@ rm -rf %{buildroot}
 /usr/local/bin
 %{_unitdir}
 %config /usr/local/etc
-%attr(600,solr,solr) /var/local/solr
+%attr(-,solr,solr) /var/local/solr
 
 %pre
 getent passwd solr > /dev/null || \
