@@ -1,0 +1,13 @@
+[Unit]
+Description=Hadoop HDFS Secondary Namenode Daemon
+Documentation=http://hadoop.apache.org/
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+ExecStart=-/usr/local/bin/hdfs secondarynamenode
+User=hdfs
+
+[Install]
+WantedBy=multi-user.target
