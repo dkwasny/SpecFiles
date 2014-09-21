@@ -7,12 +7,6 @@ Requires=network-online.target
 [Service]
 Type=simple
 ExecStart=-/usr/local/bin/solr start -f
-# This is a ginormus hack.
-# Without waiting some time, a restart of the service will fail.
-# There is some issue with solr retaining the port even after
-# the shutdown has 'finished'.
-# -dkwasny
-ExecStartPre=/usr/bin/sleep 5
 User=solr
 
 [Install]
