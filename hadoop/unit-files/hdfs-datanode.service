@@ -6,7 +6,7 @@ Requires=network-online.target
 
 [Service]
 Type=simple
-ExecStart=-/usr/local/bin/hdfs datanode
+ExecStart=-/opt/hadoop/bin/hdfs datanode
 User=hdfs
 
 [Install]

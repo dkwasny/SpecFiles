@@ -6,7 +6,7 @@ Requires=network-online.target
 
 [Service]
 Type=simple
-ExecStart=-/usr/local/bin/yarn nodemanager
+ExecStart=-/opt/hadoop/bin/yarn nodemanager
 User=yarn
 
 [Install]

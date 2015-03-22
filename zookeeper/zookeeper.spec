@@ -28,10 +28,18 @@ echo "Nothing to build..."
 
 %install
 rm -rf %{buildroot}
+mkdir %{buildroot}
+
+# Remove these directories due to a broken python file
+rm -r contrib
+rm -r src
+
 mkdir -p %{buildroot}/%{_unitdir}
-mv ./unit-files/* %{buildroot}/%{_unitdir}
-mkdir -p %{buildroot}/usr/local
-mv ./{bin,libexec,share,etc} %{buildroot}/usr/local
+mv unit-files/* %{buildroot}/%{_unitdir}
+rmdir unit-files
+
+mkdir -p %{buildroot}/opt/zookeeper
+mv * %{buildroot}/opt/zookeeper
 
 %clean
 rm -rf %{buildroot}
@@ -39,11 +47,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-/usr/local/bin
-/usr/local/libexec
-/usr/local/share
+/opt/zookeeper
 %{_unitdir}
-%config /usr/local/etc
 
 %pre
 getent passwd zookeeper > /dev/null || \

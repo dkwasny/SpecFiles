@@ -6,7 +6,7 @@ Requires=network-online.target
 
 [Service]
 Type=simple
-ExecStart=-/usr/local/bin/hbase regionserver start
+ExecStart=-/opt/hbase/bin/hbase regionserver start
 User=hbase
 
 [Install]

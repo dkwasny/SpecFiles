@@ -6,7 +6,7 @@ Requires=network-online.target
 
 [Service]
 Type=simple
-ExecStart=-/usr/local/bin/mapred historyserver
+ExecStart=-/opt/hadoop/bin/mapred historyserver
 User=yarn
 
 # The MR History Server will exit if HDFS is not readily available.

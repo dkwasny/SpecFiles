@@ -1,12 +1,12 @@
 Name:		hbase
-Version:	0.98.6.1
+Version:	1.0.0
 Release:	1%{?dist}
 Summary:	Distributed key-value store on top of Hadoop
 
 Group:		Applications/Databases
 License:	Apache 2.0
 URL:		hbase.apache.org
-Source0:	hbase-0.98.6.1.tar.gz
+Source0:	hbase-1.0.0.tar.gz
 
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
@@ -30,10 +30,14 @@ echo "Nothing to build..."
 
 %install
 rm -rf %{buildroot}
+mkdir %{buildroot}
+
 mkdir -p %{buildroot}/%{_unitdir}
-mv ./unit-files/* %{buildroot}/%{_unitdir}
-mkdir -p %{buildroot}/usr/local
-mv ./{bin,lib,share,etc} %{buildroot}/usr/local
+mv unit-files/* %{buildroot}/%{_unitdir}
+rmdir unit-files
+
+mkdir -p %{buildroot}/opt/hbase
+mv * %{buildroot}/opt/hbase
 
 %clean
 rm -rf %{buildroot}
@@ -41,11 +45,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-/usr/local/bin
-/usr/local/lib
-/usr/local/share
+/opt/hbase
 %{_unitdir}
-%config /usr/local/etc
 
 %pre
 getent passwd hbase > /dev/null || \

@@ -1,12 +1,12 @@
 Name:		hadoop
-Version:	2.5.1
+Version:	2.6.0
 Release:	1%{?dist}
 Summary:	Distributed storage and processing framework
 
 Group:		Applications/Databases
 License:	Apache 2.0
 URL:		hadoop.apache.org
-Source0:	hadoop-2.5.1.tar.gz
+Source0:	hadoop-2.6.0.tar.gz
 
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
@@ -29,10 +29,14 @@ echo "Nothing to build..."
 
 %install
 rm -rf %{buildroot}
+mkdir %{buildroot}
+
 mkdir -p %{buildroot}/%{_unitdir}
-mv ./unit-files/* %{buildroot}/%{_unitdir}
-mkdir -p %{buildroot}/usr/local
-mv ./{bin,include,lib,libexec,sbin,share,etc} %{buildroot}/usr/local
+mv unit-files/* %{buildroot}/%{_unitdir}
+rmdir unit-files
+
+mkdir -p %{buildroot}/opt/hadoop
+mv * %{buildroot}/opt/hadoop
 
 %clean
 rm -rf %{buildroot}
@@ -40,14 +44,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-/usr/local/bin
-/usr/local/include
-/usr/local/lib
-/usr/local/libexec
-/usr/local/sbin
-/usr/local/share
+/opt/hadoop
 %{_unitdir}
-%config /usr/local/etc
 
 %pre
 getent passwd hdfs > /dev/null || \
