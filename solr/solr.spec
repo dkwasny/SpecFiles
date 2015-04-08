@@ -37,9 +37,6 @@ rmdir unit-files
 mkdir -p %{buildroot}/opt/solr
 mv * %{buildroot}/opt/solr
 
-mkdir -p %{buildroot}/usr/local/bin
-ln -s /opt/solr/bin/solr %{buildroot}/usr/local/bin
-
 %clean
 rm -rf %{buildroot}
 
@@ -47,7 +44,6 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{_unitdir}
-/usr/local/bin/solr
 # Solr likes to write to itself by default
 # so I have to chown to the solr user.
 %attr(-,solr,solr) /opt/solr

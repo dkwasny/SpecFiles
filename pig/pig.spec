@@ -33,9 +33,6 @@ mkdir %{buildroot}
 mkdir -p %{buildroot}/opt/pig
 mv * %{buildroot}/opt/pig
 
-mkdir -p %{buildroot}/usr/local/bin
-ln -s /opt/pig/bin/pig %{buildroot}/usr/local/bin
-
 %clean
 rm -rf %{buildroot}
 
@@ -43,7 +40,6 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 /opt/pig
-/usr/local/bin/pig
 
 %changelog
 

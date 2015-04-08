@@ -38,12 +38,6 @@ rmdir unit-files
 mkdir -p %{buildroot}/opt/hadoop
 mv * %{buildroot}/opt/hadoop
 
-mkdir -p %{buildroot}/usr/local/bin
-ln -s /opt/hadoop/bin/hdfs %{buildroot}/usr/local/bin
-ln -s /opt/hadoop/bin/mapred %{buildroot}/usr/local/bin
-ln -s /opt/hadoop/bin/yarn %{buildroot}/usr/local/bin
-ln -s /opt/hadoop/bin/hadoop %{buildroot}/usr/local/bin
-
 %clean
 rm -rf %{buildroot}
 
@@ -51,10 +45,6 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 /opt/hadoop
-/usr/local/bin/hdfs
-/usr/local/bin/mapred
-/usr/local/bin/yarn
-/usr/local/bin/hadoop
 %{_unitdir}
 
 %pre
