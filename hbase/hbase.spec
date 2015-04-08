@@ -39,6 +39,9 @@ rmdir unit-files
 mkdir -p %{buildroot}/opt/hbase
 mv * %{buildroot}/opt/hbase
 
+mkdir -p %{buildroot}/usr/local/bin
+ln -s /opt/hbase/bin/hbase %{buildroot}/usr/local/bin
+
 %clean
 rm -rf %{buildroot}
 
@@ -46,6 +49,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 /opt/hbase
+/usr/local/bin/hbase
 %{_unitdir}
 
 %pre
