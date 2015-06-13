@@ -1,0 +1,13 @@
+[Unit]
+Description=Hive HCatalog
+Documentation=https://hive.apache.org/
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+ExecStart=-/opt/hive/bin/hive --service metastore
+User=hive
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Hive WebHCat
+Documentation=ttps://hive.apache.org/
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+ExecStart=-/opt/hive/hcatalog/sbin/webhcat_server.sh foreground
+User=hive
+
+[Install]
+WantedBy=multi-user.target
