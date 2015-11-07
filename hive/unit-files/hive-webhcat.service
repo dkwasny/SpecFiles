@@ -1,6 +1,6 @@
 [Unit]
 Description=Hive WebHCat
-Documentation=ttps://hive.apache.org/
+Documentation=https://hive.apache.org/
 After=network-online.target
 Requires=network-online.target
 
